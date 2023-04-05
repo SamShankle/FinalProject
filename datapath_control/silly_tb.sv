@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 module tb ();
 
-   logic        a;
+   logic    a;
    logic 	b;
    logic 	c;
    logic 	y;
