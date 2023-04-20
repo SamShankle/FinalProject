@@ -1,4 +1,4 @@
-module FSM (clk, reset, out, a,);
+module FSM (clk, reset, out, a);
 
 input logic clk;
 input logic reset;
@@ -42,8 +42,8 @@ module gameStart(init, inp0, inp1, outp);
     output logic[63:0] outp;
     logic line;
     
-    TB tb(.start(a));
+    
     FSM fsm(.a(init), .out(line));
     MUX mux(.s(line), .in0(inp0), .in1(inp1), .grid_e(outp));
-    datapath dp(.grid(grid_evolve), .grid_evolve(grid_e))
+    datapath dp(.grid(grid_evolve), .grid_evolve(grid_e));
 endmodule
