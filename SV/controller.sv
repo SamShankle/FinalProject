@@ -31,19 +31,22 @@ endmodule
 
 module MUX(in0, in1, grid_e, s);
     output logic [63:0] grid_e;
-    input logic[63:0] in0, in1;
+    input logic[63:0] in0;
+    input logic [63:0] in1;
     input logic s;
     assign grid_e = s ? in1 : in0;
 endmodule
 
-module gameStart(init, inp0, inp1, outp);
-    input logic init;
-    input logic[63:0] inp0, inp1;
+module gameStart(start, seed, clk, reset, outp);
+    input logic start;
+    input logic[63:0] seed;
     output logic[63:0] outp;
-    logic line;
+    logic line; 
+    logic [63:0] grid_evolve;
+    input logic clk, reset;
     
     
-    FSM fsm(.a(init), .out(line));
-    MUX mux(.s(line), .in0(inp0), .in1(inp1), .grid_e(outp));
-    datapath dp(.grid(grid_evolve), .grid_evolve(grid_e));
+    FSM fsm(.a(start), .clk(clk), .reset(reset), .out(line));
+    MUX mux(.s(line), .in0(seed), .in1(grid_evolve), .grid_e(outp));
+    datapath dp(.grid(outp), .grid_evolve(grid_evolve));
 endmodule
