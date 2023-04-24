@@ -25,6 +25,10 @@ always_comb
             if(a) nextstate <= S1;
             else nextstate <= S0;
         end
+        default: begin
+           out <= 1'b0;
+           nextstate <= S0; 
+        end
 endcase
 
 endmodule
