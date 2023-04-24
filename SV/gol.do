@@ -38,13 +38,12 @@ view wave
 -- display input and output signals as hexidecimal values
 # Diplays All Signals recursively
 # add wave -hex -r /tb/*
-add wave -noupdate -divider -height 32 "FSM"
-add wave -hex /tb/dut/out
+add wave -noupdate -divider -height 32 "gameStart"
+add wave -hex /tb/dut/start
 add wave -hex /tb/dut/reset
 add wave -hex /tb/dut/clk
-add wave -hex /tb/dut/a
-add wave -hex /tb/dut/currentstate
-add wave -hex /tb/dut/nextstate
+add wave -hex /tb/dut/outp
+add wave -hex /tb/dut/seed
 add list -hex -r /tb/*
 add log -r /*
 -- Set Wave Output Items 
