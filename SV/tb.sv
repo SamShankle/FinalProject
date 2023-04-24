@@ -1,26 +1,20 @@
 `timescale 1ns / 1ps
 module tb;
    logic start;
-   reg clk;
-   reg reset;
-   wire [63:0] seed;
-   wire [63:0] grid_e;
+   logic [63:0] hdmi;
+   logic clk;
+   logic reset;
+   logic [63:0] seed;
    
    // Instantiate DUT
-   FSM dut (
-      .clk(clk),
-      .reset(reset),
-      .a(start),
-      .out()
-
+   gameStart dut(
+      .start(start), 
+      .seed(seed), 
+      .clk(clk), 
+      .reset(reset), 
+      .outp(hdmi)
    );
-   MUX dut2(
-      .in0(seed),
-      .in1(),
-      .grid_e(),
-      .s()
-   );
-   
+  assign seed = 64'h0412_6424_0034_3C28;
    // Generate clock
    initial clk = 0;
    always #5 clk = ~clk;
@@ -33,16 +27,7 @@ module tb;
       #40 start = 1'b1;
    end
    
-   // Add testbench stimulus
-   initial begin
-      #20 $display("Grid: %b", seed);
-      #20 $display("Grid Evolve: %b", grid_e);
-      #30 $display("Grid: %b", seed);
-      #30 $display("Grid Evolve: %b", grid_e);
-      #40 $display("Grid: %b", seed);
-      #40 $display("Grid Evolve: %b", grid_e);
-      #50 $finish;
-   end
+
+  
    
 endmodule
-
