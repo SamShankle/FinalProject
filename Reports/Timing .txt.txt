@@ -1,0 +1,53 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Mon May  1 12:37:28 2023
+| Host         : CEAT-ENDV350-02 running 64-bit major release  (build 9200)
+| Command      : report_timing -file route_report_timing_0.rpt -rpx route_report_timing_0.rpx
+| Design       : top_demo
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+----------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack:                    inf
+  Source:                 test/hdmi/cx_reg[2]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            test/DataIn_reg[23]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        11.387ns  (logic 2.067ns (18.152%)  route 9.320ns (81.848%))
+  Logic Levels:           11  (FDRE=1 LUT2=2 LUT3=1 LUT5=1 LUT6=6)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X110Y132       FDRE                         0.000     0.000 r  test/hdmi/cx_reg[2]/C
+    SLICE_X110Y132       FDRE (Prop_fdre_C_Q)         0.419     0.419 r  test/hdmi/cx_reg[2]/Q
+                         net (fo=36, routed)          1.704     2.123    test/hdmi/cx[2]
+    SLICE_X111Y129       LUT5 (Prop_lut5_I2_O)        0.296     2.419 r  test/hdmi/DataIn[23]_i_77/O
+                         net (fo=2, routed)           0.682     3.100    test/hdmi/DataIn[23]_i_77_n_0
+    SLICE_X111Y129       LUT6 (Prop_lut6_I1_O)        0.124     3.224 r  test/hdmi/DataIn[23]_i_98/O
+                         net (fo=15, routed)          1.834     5.058    test/hdmi/DataIn[23]_i_98_n_0
+    SLICE_X105Y127       LUT2 (Prop_lut2_I0_O)        0.152     5.210 r  test/hdmi/DataIn[23]_i_38/O
+                         net (fo=6, routed)           0.875     6.085    test/hdmi/DataIn[23]_i_38_n_0
+    SLICE_X103Y127       LUT3 (Prop_lut3_I1_O)        0.332     6.417 f  test/hdmi/DataIn[23]_i_14/O
+                         net (fo=2, routed)           1.018     7.435    test/hdmi/DataIn[23]_i_14_n_0
+    SLICE_X106Y128       LUT6 (Prop_lut6_I5_O)        0.124     7.559 f  test/hdmi/DataIn[7]_i_27/O
+                         net (fo=2, routed)           0.674     8.233    test/hdmi/DataIn[7]_i_27_n_0
+    SLICE_X104Y127       LUT2 (Prop_lut2_I1_O)        0.124     8.357 f  test/hdmi/DataIn[23]_i_160/O
+                         net (fo=1, routed)           0.282     8.639    test/hdmi/DataIn[23]_i_160_n_0
+    SLICE_X104Y127       LUT6 (Prop_lut6_I4_O)        0.124     8.763 r  test/hdmi/DataIn[23]_i_67/O
+                         net (fo=1, routed)           0.856     9.619    test/hdmi/DataIn[23]_i_67_n_0
+    SLICE_X107Y126       LUT6 (Prop_lut6_I2_O)        0.124     9.743 r  test/hdmi/DataIn[23]_i_20/O
+                         net (fo=1, routed)           0.599    10.342    test/hdmi/DataIn[23]_i_20_n_0
+    SLICE_X108Y126       LUT6 (Prop_lut6_I2_O)        0.124    10.466 r  test/hdmi/DataIn[23]_i_5/O
+                         net (fo=1, routed)           0.797    11.263    test/hdmi/p_2_in[23]
+    SLICE_X109Y127       LUT6 (Prop_lut6_I4_O)        0.124    11.387 r  test/hdmi/DataIn[23]_i_1/O
+                         net (fo=1, routed)           0.000    11.387    test/hdmi_n_2
+    SLICE_X109Y127       FDRE                                         r  test/DataIn_reg[23]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
