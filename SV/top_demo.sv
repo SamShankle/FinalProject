@@ -52,18 +52,27 @@ module top_demo
 
   logic [16:0] CURRENT_COUNT;
   logic [16:0] NEXT_COUNT;
-  logic        smol_clk;
+  logic        smol_clk, line;
+  logic [63:0] seed, hdmi;
    
   // Place Conway Game of Life instantiation here
- gameStart start(start, seed, clk, reset, toHDMI);
+clk_div clk(.clk(sysclk_125mhz), .rst(btn[1]), .clk_en(line));
+gameStart dut(
+      .start(sw[0]), 
+      .seed(seed), 
+      .clk(line), 
+      .reset(btn[0]), 
+      .toHDMI(hdmi)
+   );
+  assign seed = 64'h0412_6424_0034_3C28;
   // HDMI
   // logic hdmi_out_en;
   //assign hdmi_out_en = 1'b0;
-  hdmi_top test (n2, sysclk_125mhz, hdmi_d_p, hdmi_d_n, hdmi_clk_p, 
+  hdmi_top test (hdmi, sysclk_125mhz, hdmi_d_p, hdmi_d_n, hdmi_clk_p, 
 		         hdmi_clk_n, hdmi_cec, hdmi_sda, hdmi_scl, hdmi_hpd);
   
   // 7-segment display
-  segment_driver driver(
+  /*segment_driver driver(
   .clk(smol_clk),
   .rst(btn[3]),
   .digit0(sw[3:0]),
@@ -73,7 +82,7 @@ module top_demo
   .decimals({1'b0, btn[2:0]}),
   .segment_cathodes({sseg_dp, sseg_cg, sseg_cf, sseg_ce, sseg_cd, sseg_cc, sseg_cb, sseg_ca}),
   .digit_anodes(sseg_an)
-  );
+  );*/
 
 // Register logic storing clock counts
   always@(posedge sysclk_125mhz)
@@ -93,15 +102,15 @@ module top_demo
 endmodule
 module clk_div (input logic clk, input logic rst, output logic clk_en);
 
-   logic [23:0] clk_count;
+   logic [24:0] clk_count;
 
    always_ff @(posedge clk) begin
       if (rst)
-	clk_count <= 24'h0;
+	clk_count <= 25'h0;
       else
 	clk_count <= clk_count + 1;
    end   
    
-   assign clk_en = clk_count[23];
+   assign clk_en = clk_count[24];
    
 endmodule // clk_div
